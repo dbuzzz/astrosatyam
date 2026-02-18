@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://palmreading.astrosatyam.in/sitemap.xml

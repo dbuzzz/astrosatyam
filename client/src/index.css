@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nice defaults */
+html,
+body {
+  height: 100%;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900 antialiased;
+  }
+}
+
+@layer utilities {
+  /* Ensure variable-font optical sizing is enabled (matches Google Fonts docs) */
+  .font-cinzel {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  .font-outfit {
+    font-family: "Outfit", system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+}
+
+/* Continuous subtle floating animation for background blobs at edges */
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.04) rotate(2.5deg);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.96) rotate(-2.5deg);
+  }
+}
+
+/* Grimoire section background (mobile vs desktop) */
+.grimoire-section-bg {
+  background-image: url("../assets/Why%20us%20_.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .grimoire-section-bg {
+    background-image: url("../assets/backgrim.png");
+    background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+}
+
+/* Scroll-reveal animations (professional + subtle) */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  filter: blur(6px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.reveal-left {
+  transform: translate3d(-18px, 0, 0);
+}
+
+.reveal.reveal-right {
+  transform: translate3d(18px, 0, 0);
+}
+
+.reveal.reveal-scale {
+  transform: translate3d(0, 10px, 0) scale(0.985);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.reveal-left,
+  .reveal.reveal-right,
+  .reveal.reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+
