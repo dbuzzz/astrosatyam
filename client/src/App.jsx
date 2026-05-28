@@ -213,7 +213,7 @@ function TermsPage() {
       <p>We may update these terms at any time. Clients are encouraged to review them periodically.</p>
 
       <h2>9. Contact Information</h2>
-      <p>Phone/WhatsApp: +91 85288 85597</p>
+      <p>Phone/WhatsApp: +91 92781 90266</p>
     </LegalPageLayout>
   );
 }
@@ -274,7 +274,7 @@ function RefundsPage() {
       <p>We may update this policy at any time. Clients are encouraged to review it periodically.</p>
 
       <h2>9. Contact Information</h2>
-      <p>Phone/WhatsApp: +91 85288 85597</p>
+      <p>Phone/WhatsApp: +91 92781 90266</p>
     </LegalPageLayout>
   );
 }
@@ -291,7 +291,7 @@ function Navbar() {
         />
 
         <a
-          href="https://wa.me/918528885597"
+          href="https://wa.me/919278190266"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
@@ -434,7 +434,7 @@ function Hero() {
           </p>
 
           <p className="mt-4 font-outfit text-[16px] font-bold leading-[26px] text-[#2B2B2B] sm:text-[17px] md:text-[18px]">
-            Get Started Today – Plans from ₹599
+            Get Started Today – Plans from ₹750
           </p>
 
           <ul className="mt-3 flex flex-col gap-1 font-outfit text-[15px] font-semibold text-[#4B5563] sm:text-[16px] md:text-[17px]">
@@ -580,7 +580,7 @@ function Services() {
                 {/* WhatsApp us & Call us – same number as header */}
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
                   <a
-                    href="https://wa.me/918528885597"
+                    href="https://wa.me/919278190266"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 font-outfit text-sm font-semibold text-white shadow-sm hover:opacity-95"
@@ -588,7 +588,7 @@ function Services() {
                     WhatsApp us
                   </a>
                   <a
-                    href="tel:+918528885597"
+                    href="tel:+919278190266"
                     className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#333333] px-6 font-outfit text-sm font-semibold text-white shadow-sm hover:opacity-95"
                   >
                     Call us
@@ -863,59 +863,58 @@ function Pricing({ onSelectPlan }) {
     {
       id: "Insight",
       label: "STARTER",
-      name: "Insight",
-      subtitle: "Palmistry",
-      price: "₹599",
+      name: "SILVER",
+      subtitle: "Detailed Palm Reading Report",
+      price: "₹750",
       paymentLink: "https://rzp.io/rzp/bXhG5rs",
       originalPrice: null,
       saveAmount: null,
-      intro: "Complete personality and palm analysis.",
+      intro: null,
       features: [
-        "Complete Personality & Nature Analysis",
-        "All major & minor lines analysis",
-        "Complete mount examination",
-        "Special signs & markings",
-        "Luck Activation Age",
-        "Personalized remedies"
+        "Complete Palm Analysis",
+        "Career & Financial Insights",
+        "Love & Marriage Guidance",
+        "Health Predictions",
+        "1 Powerful Remedy"
       ],
       isFeatured: false
     },
     {
       id: "Destiny",
       label: "FULL ACCESS",
-      name: "Destiny",
-      subtitle: "Palmistry + Name Correction",
-      price: "₹1,499",
+      name: "GOLD",
+      subtitle: "Detailed Kundali Reading Report",
+      price: "₹1,100",
       paymentLink: "https://rzp.io/rzp/ex8HM5N",
       originalPrice: "₹3,999",
-      saveAmount: "₹2,500",
-      intro: "30+ page palmistry, corrected-name report, and full KP Nakshatra astrology (5-year dashas).",
+      saveAmount: null,
+      intro: null,
       features: [
-        "Complete Palmistry PDF (30+ pages)",
-        "Full Name Correction report + remedies",
-        "70+ page KP Nakshatra (Star + Sub Lord) report",
-        "5-year Mahadasha/Antardasha timeline",
-        "Career, finance, health, property, fame"
+        "Complete Horoscope Analysis",
+        "Career & Business Guidance",
+        "Marriage & Relationship Reading",
+        "Wealth & Success Prediction",
+        "Personalized Remedy"
       ],
       isFeatured: true
     },
     {
       id: "Oracle",
       label: "ADVANCED",
-      name: "Oracle",
-      subtitle: "Palmistry + Name Correction",
-      price: "₹999",
+      name: "PLATINUM",
+      subtitle: "Palm + Kundali Premium Reading",
+      price: "₹2,500",
       paymentLink: "https://rzp.io/rzp/xLvIN6r",
       originalPrice: null,
       saveAmount: null,
-      intro: "30+ Page Palmistry + 40+ Page Name Correction",
+      intro: null,
       features: [
-        "Complete Palmistry Analysis",
-        "Full Name Correction Report",
-        "10-Year predictions with both names",
-        "Corrected Name Included",
-        "Missing number remedies",
-        "3 Months AI Chatbot Access"
+        "Full Palm Reading",
+        "Detailed Kundali Analysis",
+        "Career, Marriage & Finance Guidance",
+        "Health & Future Predictions",
+        "Personalized Remedies",
+        "FREE Personal Consultation Included"
       ],
       isFeatured: false
     }
@@ -1235,10 +1234,366 @@ function ChevronIcon(props) {
   );
 }
 
+/* ── Custom Date Picker Modal ── */
+function DatePickerModal({ isOpen, onClose, onSelect, selectedDate }) {
+  const [viewDate, setViewDate] = React.useState(() => {
+    if (selectedDate) return new Date(selectedDate);
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - 25);
+    return d;
+  });
+  const [pickerMode, setPickerMode] = React.useState("days"); // "days" | "months" | "years"
+
+  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const monthNamesShort = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const dayNames = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+
+  const currentYear = viewDate.getFullYear();
+  const currentMonth = viewDate.getMonth();
+
+  // Generate calendar days
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+  const calendarDays = [];
+  // Previous month trailing days
+  for (let i = firstDay - 1; i >= 0; i--) {
+    calendarDays.push({ day: daysInPrevMonth - i, currentMonth: false });
+  }
+  // Current month days
+  for (let i = 1; i <= daysInMonth; i++) {
+    calendarDays.push({ day: i, currentMonth: true });
+  }
+  // Next month leading days
+  const remaining = 42 - calendarDays.length;
+  for (let i = 1; i <= remaining; i++) {
+    calendarDays.push({ day: i, currentMonth: false });
+  }
+
+  const isSelectedDay = (day) => {
+    if (!selectedDate || !day.currentMonth) return false;
+    const sel = new Date(selectedDate);
+    return sel.getDate() === day.day && sel.getMonth() === currentMonth && sel.getFullYear() === currentYear;
+  };
+
+  const isToday = (day) => {
+    if (!day.currentMonth) return false;
+    const today = new Date();
+    return today.getDate() === day.day && today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+  };
+
+  const handleDayClick = (day) => {
+    if (!day.currentMonth) return;
+    const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day.day).padStart(2, "0")}`;
+    onSelect(dateStr);
+    onClose();
+  };
+
+  const navigateMonth = (dir) => {
+    setViewDate(new Date(currentYear, currentMonth + dir, 1));
+  };
+
+  const navigateYear = (dir) => {
+    setViewDate(new Date(currentYear + dir, currentMonth, 1));
+  };
+
+  // Year range for year picker (100 years back, 10 forward)
+  const yearStart = currentYear - 60;
+  const yearEnd = new Date().getFullYear();
+  const years = [];
+  for (let y = yearEnd; y >= yearStart; y--) years.push(y);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
+      <div
+        className="mx-4 w-full max-w-[360px] rounded-2xl bg-white shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        style={{ animation: "datePickerSlideIn 0.25s ease-out" }}
+      >
+        {/* Header */}
+        <div className="rounded-t-2xl bg-[linear-gradient(135deg,#FF6F00_0%,#FF8C42_100%)] px-5 py-4">
+          <p className="font-outfit text-xs font-medium uppercase tracking-wider text-white/80">Select Date of Birth</p>
+          <p className="mt-1 font-cinzel text-lg font-bold text-white">
+            {selectedDate
+              ? new Date(selectedDate + "T00:00:00").toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "long", year: "numeric" })
+              : "Choose a date"}
+          </p>
+        </div>
+
+        <div className="p-4">
+          {pickerMode === "days" && (
+            <>
+              {/* Month/Year navigation */}
+              <div className="mb-3 flex items-center justify-between">
+                <button type="button" onClick={() => navigateMonth(-1)} className="flex h-8 w-8 items-center justify-center rounded-full text-[#4B5563] transition-colors hover:bg-[#FFF7ED] hover:text-[#FF6F00]">
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div className="flex items-center gap-1">
+                  <button type="button" onClick={() => setPickerMode("months")} className="rounded-lg px-2 py-1 font-outfit text-sm font-semibold text-[#2B2B2B] transition-colors hover:bg-[#FFF7ED] hover:text-[#FF6F00]">
+                    {monthNames[currentMonth]}
+                  </button>
+                  <button type="button" onClick={() => setPickerMode("years")} className="rounded-lg px-2 py-1 font-outfit text-sm font-semibold text-[#2B2B2B] transition-colors hover:bg-[#FFF7ED] hover:text-[#FF6F00]">
+                    {currentYear}
+                  </button>
+                </div>
+                <button type="button" onClick={() => navigateMonth(1)} className="flex h-8 w-8 items-center justify-center rounded-full text-[#4B5563] transition-colors hover:bg-[#FFF7ED] hover:text-[#FF6F00]">
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+
+              {/* Day names */}
+              <div className="mb-1 grid grid-cols-7 gap-0">
+                {dayNames.map((d) => (
+                  <div key={d} className="flex h-8 items-center justify-center font-outfit text-xs font-semibold text-[#9CA3AF]">{d}</div>
+                ))}
+              </div>
+
+              {/* Calendar grid */}
+              <div className="grid grid-cols-7 gap-0">
+                {calendarDays.map((day, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => handleDayClick(day)}
+                    disabled={!day.currentMonth}
+                    className={`flex h-9 w-full items-center justify-center rounded-full font-outfit text-sm transition-all ${
+                      isSelectedDay(day)
+                        ? "bg-[#FF6F00] font-bold text-white shadow-md shadow-[#FF6F00]/30"
+                        : isToday(day)
+                        ? "font-semibold text-[#FF6F00] ring-1 ring-[#FF6F00]/40"
+                        : day.currentMonth
+                        ? "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                        : "text-[#D1D5DB] cursor-default"
+                    }`}
+                  >
+                    {day.day}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+
+          {pickerMode === "months" && (
+            <div className="grid grid-cols-3 gap-2">
+              {monthNamesShort.map((m, idx) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => { setViewDate(new Date(currentYear, idx, 1)); setPickerMode("days"); }}
+                  className={`rounded-xl px-3 py-3 font-outfit text-sm font-medium transition-all ${
+                    idx === currentMonth
+                      ? "bg-[#FF6F00] text-white shadow-md shadow-[#FF6F00]/30"
+                      : "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                  }`}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {pickerMode === "years" && (
+            <div className="max-h-[280px] overflow-y-auto rounded-xl">
+              <div className="grid grid-cols-4 gap-1 p-1">
+                {years.map((y) => (
+                  <button
+                    key={y}
+                    type="button"
+                    onClick={() => { setViewDate(new Date(y, currentMonth, 1)); setPickerMode("days"); }}
+                    className={`rounded-lg px-2 py-2 font-outfit text-sm font-medium transition-all ${
+                      y === currentYear
+                        ? "bg-[#FF6F00] text-white shadow-md shadow-[#FF6F00]/30"
+                        : "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                    }`}
+                  >
+                    {y}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Footer buttons */}
+          <div className="mt-4 flex items-center justify-end gap-3">
+            <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 font-outfit text-sm font-semibold text-[#4B5563] transition-colors hover:bg-[#F3F4F6]">
+              Cancel
+            </button>
+            <button type="button" onClick={() => { onSelect(""); onClose(); }} className="rounded-lg px-4 py-2 font-outfit text-sm font-semibold text-[#FF6F00] transition-colors hover:bg-[#FFF7ED]">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Custom Time Picker Modal ── */
+function TimePickerModal({ isOpen, onClose, onSelect, selectedTime }) {
+  const [hour, setHour] = React.useState(() => {
+    if (selectedTime) {
+      const parts = selectedTime.split(":");
+      let h = parseInt(parts[0], 10);
+      if (h === 0) return 12;
+      if (h > 12) return h - 12;
+      return h;
+    }
+    return 12;
+  });
+  const [minute, setMinute] = React.useState(() => {
+    if (selectedTime) return parseInt(selectedTime.split(":")[1], 10);
+    return 0;
+  });
+  const [period, setPeriod] = React.useState(() => {
+    if (selectedTime) {
+      const h = parseInt(selectedTime.split(":")[0], 10);
+      return h >= 12 ? "PM" : "AM";
+    }
+    return "AM";
+  });
+
+  const scrollHourRef = React.useRef(null);
+  const scrollMinRef = React.useRef(null);
+
+  const hours = Array.from({ length: 12 }, (_, i) => i + 1);
+  const minutes = Array.from({ length: 60 }, (_, i) => i);
+
+  const handleConfirm = () => {
+    let h24 = hour;
+    if (period === "AM" && hour === 12) h24 = 0;
+    else if (period === "PM" && hour !== 12) h24 = hour + 12;
+    const timeStr = `${String(h24).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+    onSelect(timeStr);
+    onClose();
+  };
+
+  // Scroll active items into view on open
+  React.useEffect(() => {
+    if (isOpen) {
+      requestAnimationFrame(() => {
+        scrollHourRef.current?.querySelector(".time-active")?.scrollIntoView({ block: "center", behavior: "instant" });
+        scrollMinRef.current?.querySelector(".time-active")?.scrollIntoView({ block: "center", behavior: "instant" });
+      });
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const formatDisplay = () => {
+    return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")} ${period}`;
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onClose}>
+      <div
+        className="mx-4 w-full max-w-[340px] rounded-2xl bg-white shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        style={{ animation: "datePickerSlideIn 0.25s ease-out" }}
+      >
+        {/* Header */}
+        <div className="rounded-t-2xl bg-[linear-gradient(135deg,#FF6F00_0%,#FF8C42_100%)] px-5 py-4">
+          <p className="font-outfit text-xs font-medium uppercase tracking-wider text-white/80">Select Time of Birth</p>
+          <p className="mt-1 font-cinzel text-xl font-bold text-white">{formatDisplay()}</p>
+        </div>
+
+        {/* Time Selector */}
+        <div className="p-4">
+          <div className="flex items-stretch gap-2 rounded-xl bg-[#FFFBF5] p-3">
+            {/* Hour Column */}
+            <div className="flex-1">
+              <p className="mb-2 text-center font-outfit text-xs font-semibold uppercase tracking-wider text-[#9CA3AF]">Hour</p>
+              <div ref={scrollHourRef} className="custom-time-scroll max-h-[180px] overflow-y-auto rounded-lg">
+                {hours.map((h) => (
+                  <button
+                    key={h}
+                    type="button"
+                    onClick={() => setHour(h)}
+                    className={`${h === hour ? "time-active" : ""} flex w-full items-center justify-center rounded-lg py-2 font-outfit text-sm font-medium transition-all ${
+                      h === hour
+                        ? "bg-[#FF6F00] text-white shadow-md shadow-[#FF6F00]/30"
+                        : "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                    }`}
+                  >
+                    {String(h).padStart(2, "0")}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="flex items-center">
+              <span className="font-cinzel text-xl font-bold text-[#FF6F00]">:</span>
+            </div>
+
+            {/* Minute Column */}
+            <div className="flex-1">
+              <p className="mb-2 text-center font-outfit text-xs font-semibold uppercase tracking-wider text-[#9CA3AF]">Min</p>
+              <div ref={scrollMinRef} className="custom-time-scroll max-h-[180px] overflow-y-auto rounded-lg">
+                {minutes.map((m) => (
+                  <button
+                    key={m}
+                    type="button"
+                    onClick={() => setMinute(m)}
+                    className={`${m === minute ? "time-active" : ""} flex w-full items-center justify-center rounded-lg py-2 font-outfit text-sm font-medium transition-all ${
+                      m === minute
+                        ? "bg-[#FF6F00] text-white shadow-md shadow-[#FF6F00]/30"
+                        : "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                    }`}
+                  >
+                    {String(m).padStart(2, "0")}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* AM/PM */}
+            <div className="flex flex-col items-center justify-center gap-2">
+              <p className="mb-2 text-center font-outfit text-xs font-semibold uppercase tracking-wider text-[#9CA3AF]">&nbsp;</p>
+              {["AM", "PM"].map((p) => (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setPeriod(p)}
+                  className={`rounded-lg px-3 py-2 font-outfit text-sm font-bold transition-all ${
+                    period === p
+                      ? "bg-[#FF6F00] text-white shadow-md shadow-[#FF6F00]/30"
+                      : "text-[#2B2B2B] hover:bg-[#FFF7ED] hover:text-[#FF6F00]"
+                  }`}
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer buttons */}
+          <div className="mt-4 flex items-center justify-end gap-3">
+            <button type="button" onClick={onClose} className="rounded-lg px-4 py-2 font-outfit text-sm font-semibold text-[#4B5563] transition-colors hover:bg-[#F3F4F6]">
+              Cancel
+            </button>
+            <button type="button" onClick={handleConfirm} className="rounded-lg bg-[#FF6F00] px-5 py-2 font-outfit text-sm font-bold text-white shadow-md shadow-[#FF6F00]/30 transition-colors hover:bg-[#e65a00]">
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
   const [selectedPackage, setSelectedPackage] = React.useState(null);
+  const [addConsultation, setAddConsultation] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState("+91 ");
   const [email, setEmail] = React.useState("");
+  const [dateOfBirth, setDateOfBirth] = React.useState("");
+  const [timeOfBirth, setTimeOfBirth] = React.useState("");
+  const [placeOfBirth, setPlaceOfBirth] = React.useState("");
+  const [showDatePicker, setShowDatePicker] = React.useState(false);
+  const [showTimePicker, setShowTimePicker] = React.useState(false);
   const [uploadedImage, setUploadedImage] = React.useState(null);
   const [imagePreview, setImagePreview] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -1247,10 +1602,46 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
   const fileInputRef = React.useRef(null);
 
   const packages = [
-    { id: "Insight", name: "INSIGHT", price: "₹599", paymentLink: "https://rzp.io/rzp/bXhG5rs" },
-    { id: "Destiny", name: "DESTINY", price: "₹1,499", isBest: true, paymentLink: "https://rzp.io/rzp/ex8HM5N" },
-    { id: "Oracle", name: "ORACLE", price: "₹999", paymentLink: "https://rzp.io/rzp/xLvIN6r" }
+    { id: "Insight", name: "SILVER", price: 750, paymentLink: "https://rzp.io/rzp/bXhG5rs", consultationPaymentLink: "https://rzp.io/rzp/bXhG5rs" },
+    { id: "Destiny", name: "GOLD", price: 1100, isBest: true, paymentLink: "https://rzp.io/rzp/ex8HM5N", consultationPaymentLink: "https://rzp.io/rzp/ex8HM5N" },
+    { id: "Oracle", name: "PLATINUM", price: 2500, paymentLink: "https://rzp.io/rzp/xLvIN6r", includesConsultation: true }
   ];
+
+  // Reset consultation toggle when switching packages
+  const handlePackageSelect = (pkgId) => {
+    setSelectedPackage(pkgId);
+    const pkg = packages.find((p) => p.id === pkgId);
+    if (pkg?.includesConsultation) {
+      setAddConsultation(false);
+    }
+  };
+
+  // Compute total price for display
+  const selectedPkg = packages.find((p) => p.id === selectedPackage);
+  const showConsultationOption = selectedPkg && !selectedPkg.includesConsultation;
+  const totalPrice = selectedPkg
+    ? selectedPkg.price + (showConsultationOption && addConsultation ? 1000 : 0)
+    : null;
+
+  const formatPrice = (num) => `₹${num.toLocaleString("en-IN")}`;
+
+  // Format date for display
+  const formatDateDisplay = (dateStr) => {
+    if (!dateStr) return "";
+    const d = new Date(dateStr + "T00:00:00");
+    return d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+  };
+
+  // Format time for display
+  const formatTimeDisplay = (timeStr) => {
+    if (!timeStr) return "";
+    const [hh, mm] = timeStr.split(":");
+    let h = parseInt(hh, 10);
+    const ampm = h >= 12 ? "PM" : "AM";
+    if (h === 0) h = 12;
+    else if (h > 12) h -= 12;
+    return `${String(h).padStart(2, "0")}:${mm} ${ampm}`;
+  };
 
   // Phone number regex: Indian phone numbers (10 digits after +91)
   const phoneRegex = /^\+91\s?[6-9]\d{9}$/;
@@ -1309,6 +1700,12 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Validate date of birth
+    if (!dateOfBirth) {
+      alert("Please select your date of birth");
+      return;
+    }
+
     // Validate phone number
     if (!phoneRegex.test(phoneNumber)) {
       alert("Please enter a valid Indian phone number");
@@ -1328,7 +1725,9 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
     }
 
     const pkg = packages.find((p) => p.id === selectedPackage);
-    const paymentLink = pkg?.paymentLink;
+    const paymentLink = (showConsultationOption && addConsultation)
+      ? pkg?.consultationPaymentLink
+      : pkg?.paymentLink;
     if (!paymentLink) {
       alert("Invalid package. Please try again.");
       return;
@@ -1337,10 +1736,14 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
     const form = e.target;
     const formDataObj = {
       fullName: form.fullName.value,
+      dateOfBirth: dateOfBirth,
+      timeOfBirth: timeOfBirth || "Not provided",
+      placeOfBirth: placeOfBirth || "Not provided",
       phoneNumber: phoneNumber,
       email: email || "",
-      dateOfBirth: form.dateOfBirth.value,
-      package: selectedPackage
+      package: selectedPackage,
+      addConsultation: showConsultationOption && addConsultation,
+      totalPrice: totalPrice
     };
     sessionStorage.setItem("payment_return_data", JSON.stringify(formDataObj));
     // Save palm image for admin email (sessionStorage ~5MB limit; keep base64 under ~1.2MB)
@@ -1477,9 +1880,9 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Input Fields - Two Columns */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {/* Left Column */}
+            {/* Input Fields */}
+            <div className="space-y-4">
+              {/* Full Name - Full Width */}
               <div>
                 <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
                   FULL NAME <span className="text-[#FF6F00]">*</span>
@@ -1492,50 +1895,116 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
                   required
                 />
               </div>
-              {/* Right Column */}
+
+              {/* Date of Birth & Time of Birth - Two Columns */}
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                {/* Date of Birth - Custom Picker */}
+                <div>
+                  <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
+                    DATE OF BIRTH <span className="text-[#FF6F00]">*</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowDatePicker(true)}
+                    className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left font-outfit text-sm transition-colors ${
+                      dateOfBirth
+                        ? "border-[#FF6F00]/40 bg-[#FFF7ED] text-[#2B2B2B]"
+                        : "border-[#E5E7EB] text-[#9CA3AF] hover:border-[#FF6F00]/40"
+                    }`}
+                  >
+                    <span>{dateOfBirth ? formatDateDisplay(dateOfBirth) : "Select your date of birth"}</span>
+                    <svg className="h-5 w-5 shrink-0 text-[#FF6F00]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <rect x={3} y={4} width={18} height={18} rx={2} ry={2} />
+                      <path d="M16 2v4M8 2v4M3 10h18" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Time of Birth - Custom Picker */}
+                <div>
+                  <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
+                    TIME OF BIRTH <span className="font-normal text-[#9CA3AF]">(if known)</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowTimePicker(true)}
+                    className={`flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left font-outfit text-sm transition-colors ${
+                      timeOfBirth
+                        ? "border-[#FF6F00]/40 bg-[#FFF7ED] text-[#2B2B2B]"
+                        : "border-[#E5E7EB] text-[#9CA3AF] hover:border-[#FF6F00]/40"
+                    }`}
+                  >
+                    <span>{timeOfBirth ? formatTimeDisplay(timeOfBirth) : "Select time of birth"}</span>
+                    <svg className="h-5 w-5 shrink-0 text-[#FF6F00]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <circle cx={12} cy={12} r={10} />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Place of Birth - Full Width */}
               <div>
                 <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
-                  PHONE NUMBER <span className="text-[#FF6F00]">*</span>
+                  PLACE OF BIRTH <span className="font-normal text-[#9CA3AF]">(optional)</span>
                 </label>
                 <input
-                  type="tel"
-                  name="phoneNumber"
-                  value={phoneNumber}
-                  onChange={handlePhoneChange}
-                  placeholder="+91 98765 43210"
+                  type="text"
+                  name="placeOfBirth"
+                  value={placeOfBirth}
+                  onChange={(e) => setPlaceOfBirth(e.target.value)}
+                  placeholder="e.g. Mumbai, Maharashtra"
                   className="w-full rounded-lg border border-[#E5E7EB] px-4 py-3 font-outfit text-sm focus:border-[#FF6F00] focus:outline-none focus:ring-2 focus:ring-[#FF6F00]/20"
-                  required
-                  pattern="^\+91\s?[6-9]\d{9}$"
                 />
               </div>
-              {/* Left Column */}
-              <div>
-                <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
-                  EMAIL ADDRESS
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="aditi@email.com"
-                  className="w-full rounded-lg border border-[#E5E7EB] px-4 py-3 font-outfit text-sm focus:border-[#FF6F00] focus:outline-none focus:ring-2 focus:ring-[#FF6F00]/20"
-                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-                />
-              </div>
-              {/* Right Column */}
-              <div>
-                <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
-                  DATE OF BIRTH <span className="text-[#FF6F00]">*</span>
-                </label>
-                <input
-                  type="date"
-                  name="dateOfBirth"
-                  className="w-full rounded-lg border border-[#E5E7EB] px-4 py-3 font-outfit text-sm focus:border-[#FF6F00] focus:outline-none focus:ring-2 focus:ring-[#FF6F00]/20"
-                  required
-                />
+
+              {/* Phone Number & Email - Two Columns */}
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
+                    PHONE NUMBER <span className="text-[#FF6F00]">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    value={phoneNumber}
+                    onChange={handlePhoneChange}
+                    placeholder="+91 98765 43210"
+                    className="w-full rounded-lg border border-[#E5E7EB] px-4 py-3 font-outfit text-sm focus:border-[#FF6F00] focus:outline-none focus:ring-2 focus:ring-[#FF6F00]/20"
+                    required
+                    pattern="^\+91\s?[6-9]\d{9}$"
+                  />
+                </div>
+                <div>
+                  <label className="mb-2 block font-outfit text-sm font-semibold text-[#2B2B2B]">
+                    EMAIL ADDRESS
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="aditi@email.com"
+                    className="w-full rounded-lg border border-[#E5E7EB] px-4 py-3 font-outfit text-sm focus:border-[#FF6F00] focus:outline-none focus:ring-2 focus:ring-[#FF6F00]/20"
+                    pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                  />
+                </div>
               </div>
             </div>
+
+            {/* Date & Time Picker Modals */}
+            <DatePickerModal
+              isOpen={showDatePicker}
+              onClose={() => setShowDatePicker(false)}
+              onSelect={setDateOfBirth}
+              selectedDate={dateOfBirth}
+            />
+            <TimePickerModal
+              isOpen={showTimePicker}
+              onClose={() => setShowTimePicker(false)}
+              onSelect={setTimeOfBirth}
+              selectedTime={timeOfBirth}
+            />
 
             {/* Package Selection */}
             <div>
@@ -1551,7 +2020,7 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
                     <button
                       key={pkg.id}
                       type="button"
-                      onClick={() => setSelectedPackage(pkg.id)}
+                      onClick={() => handlePackageSelect(pkg.id)}
                       className={`relative overflow-hidden rounded-xl border-2 p-4 text-center transition-all ${
                         isSelected
                           ? "border-[#FF6F00] bg-[#FFF8E1] shadow-lg"
@@ -1571,12 +2040,63 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
                         {pkg.name}
                       </div>
                       <div className="mt-1 font-outfit text-base font-bold text-[#FF6F00]">
-                        {pkg.price}
+                        {formatPrice(pkg.price)}
                       </div>
+                      {pkg.includesConsultation && (
+                        <div className="mt-1 font-outfit text-xs font-medium text-[#059669]">
+                          ✓ FREE Consultation Included
+                        </div>
+                      )}
                     </button>
                   );
                 })}
               </div>
+
+              {/* Consultation Add-on Toggle */}
+              {showConsultationOption && (
+                <div className="mt-4 rounded-xl border-2 border-dashed border-[#FED7AA] bg-[#FFF7ED] p-4 transition-all">
+                  <label className="flex cursor-pointer items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      {/* Custom Toggle Switch */}
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={addConsultation}
+                          onChange={(e) => setAddConsultation(e.target.checked)}
+                          className="sr-only"
+                        />
+                        <div
+                          className={`h-6 w-11 rounded-full transition-colors duration-200 ${
+                            addConsultation ? "bg-[#FF6F00]" : "bg-[#D1D5DB]"
+                          }`}
+                        >
+                          <div
+                            className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200 ${
+                              addConsultation ? "translate-x-5" : "translate-x-0"
+                            }`}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <span className="font-outfit text-sm font-semibold text-[#2B2B2B]">
+                          Add Personal Consultation
+                        </span>
+                        <span className="ml-2 font-outfit text-sm font-bold text-[#FF6F00]">
+                          +₹1,000
+                        </span>
+                      </div>
+                    </div>
+                    {addConsultation && (
+                      <div className="flex flex-col items-end">
+                        <span className="font-outfit text-xs text-[#6B7280]">Total</span>
+                        <span className="font-outfit text-lg font-bold text-[#FF6F00]">
+                          {formatPrice(totalPrice)}
+                        </span>
+                      </div>
+                    )}
+                  </label>
+                </div>
+              )}
             </div>
 
             {/* Upload Right Palm */}
@@ -1646,6 +2166,48 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
               )}
             </div>
 
+            {/* Price Summary */}
+            {selectedPackage && (
+              <div className="rounded-xl bg-[#F9FAFB] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-outfit text-sm text-[#4B5563]">
+                    {selectedPkg?.name} Package
+                  </span>
+                  <span className="font-outfit text-sm text-[#2B2B2B]">
+                    {formatPrice(selectedPkg?.price || 0)}
+                  </span>
+                </div>
+                {showConsultationOption && addConsultation && (
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="font-outfit text-sm text-[#4B5563]">
+                      Personal Consultation
+                    </span>
+                    <span className="font-outfit text-sm text-[#2B2B2B]">
+                      +₹1,000
+                    </span>
+                  </div>
+                )}
+                {selectedPkg?.includesConsultation && (
+                  <div className="mt-2 flex items-center justify-between">
+                    <span className="font-outfit text-sm text-[#059669]">
+                      Personal Consultation
+                    </span>
+                    <span className="font-outfit text-sm font-semibold text-[#059669]">
+                      FREE
+                    </span>
+                  </div>
+                )}
+                <div className="mt-3 border-t border-[#E5E7EB] pt-3 flex items-center justify-between">
+                  <span className="font-outfit text-base font-bold text-[#2B2B2B]">
+                    Total
+                  </span>
+                  <span className="font-outfit text-xl font-bold text-[#FF6F00]">
+                    {formatPrice(totalPrice)}
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Submit Button */}
             <button
               type="submit"
@@ -1678,7 +2240,7 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
                 </>
               ) : (
                 <>
-                  Proceed to Secure Payment
+                  Proceed to Secure Payment — {totalPrice ? formatPrice(totalPrice) : ''}
                   <LockIcon className="h-5 w-5" />
                 </>
               )}
@@ -1775,15 +2337,15 @@ function ThankYouRoute() {
 
 function ThankYouPage({ data, onClose }) {
   const packageNames = {
-    Insight: "Insight",
-    Destiny: "Destiny",
-    Oracle: "Oracle"
+    Insight: "Silver",
+    Destiny: "Gold",
+    Oracle: "Platinum"
   };
 
   const packagePrices = {
-    Insight: "₹599",
-    Destiny: "₹1,499",
-    Oracle: "₹999"
+    Insight: "₹750",
+    Destiny: "₹1,100",
+    Oracle: "₹2,500"
   };
 
   const handleBackdropClick = (e) => {

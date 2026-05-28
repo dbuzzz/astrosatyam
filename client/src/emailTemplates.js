@@ -4,15 +4,18 @@
  */
 
 const packageNames = {
-  Insight: "Insight (₹599)",
-  Destiny: "Destiny (₹1,499)",
-  Oracle: "Oracle (₹999)"
+  Insight: "Silver (₹750)",
+  Destiny: "Gold (₹1,100)",
+  Oracle: "Platinum (₹2,500)"
 };
 
 const packageDescriptions = {
-  Insight: "Your Personality Report with Major Lines Analysis",
-  Destiny: "Complete Destiny Analysis with Comprehensive Palm Reading",
-  Oracle: "Numerology Report with 10-Year Timeline"
+  Insight:
+    "Detailed Palm Reading Report: complete palm analysis, career & financial insights, love & marriage guidance, health predictions, and 1 powerful remedy. Consultation add-on: +₹1,000 (Total ₹1,750).",
+  Destiny:
+    "Detailed Kundali Reading Report: complete horoscope analysis, career & business guidance, marriage & relationship reading, wealth & success prediction, and personalized remedy. Consultation add-on: +₹1,000 (Total ₹2,100).",
+  Oracle:
+    "Palm + Kundali Premium Reading: full palm reading, detailed kundali analysis, career, marriage & finance guidance, health & future predictions, and personalized remedies. Includes FREE personal consultation."
 };
 
 /** Admin email: new palm reading request (to Beereshjiawasthi@gmail.com) */
