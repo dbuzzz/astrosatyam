@@ -866,7 +866,7 @@ function Pricing({ onSelectPlan }) {
       name: "SILVER",
       subtitle: "Detailed Palm Reading Report",
       price: "₹750",
-      paymentLink: "https://rzp.io/rzp/bXhG5rs",
+      paymentLink: "https://rzp.io/rzp/bAIEwT1Z",
       originalPrice: null,
       saveAmount: null,
       intro: null,
@@ -885,7 +885,7 @@ function Pricing({ onSelectPlan }) {
       name: "GOLD",
       subtitle: "Detailed Kundali Reading Report",
       price: "₹1,100",
-      paymentLink: "https://rzp.io/rzp/ex8HM5N",
+      paymentLink: "https://rzp.io/rzp/g1KRCBY",
       originalPrice: "₹3,999",
       saveAmount: null,
       intro: null,
@@ -904,7 +904,7 @@ function Pricing({ onSelectPlan }) {
       name: "PLATINUM",
       subtitle: "Palm + Kundali Premium Reading",
       price: "₹2,500",
-      paymentLink: "https://rzp.io/rzp/xLvIN6r",
+      paymentLink: "https://rzp.io/rzp/hLHEfpb",
       originalPrice: null,
       saveAmount: null,
       intro: null,
@@ -1602,9 +1602,9 @@ function UnlockFuture({ preselectedPlanId, onClearPreselected }) {
   const fileInputRef = React.useRef(null);
 
   const packages = [
-    { id: "Insight", name: "SILVER", price: 750, paymentLink: "https://rzp.io/rzp/bXhG5rs", consultationPaymentLink: "https://rzp.io/rzp/bXhG5rs" },
-    { id: "Destiny", name: "GOLD", price: 1100, isBest: true, paymentLink: "https://rzp.io/rzp/ex8HM5N", consultationPaymentLink: "https://rzp.io/rzp/ex8HM5N" },
-    { id: "Oracle", name: "PLATINUM", price: 2500, paymentLink: "https://rzp.io/rzp/xLvIN6r", includesConsultation: true }
+    { id: "Insight", name: "SILVER", price: 750, paymentLink: "https://rzp.io/rzp/bAIEwT1Z", consultationPaymentLink: "https://rzp.io/rzp/k51bvMn" },
+    { id: "Destiny", name: "GOLD", price: 1100, isBest: true, paymentLink: "https://rzp.io/rzp/g1KRCBY", consultationPaymentLink: "https://rzp.io/rzp/6qz7Np5d" },
+    { id: "Oracle", name: "PLATINUM", price: 2500, paymentLink: "https://rzp.io/rzp/hLHEfpb", includesConsultation: true }
   ];
 
   // Reset consultation toggle when switching packages
